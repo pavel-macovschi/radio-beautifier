@@ -1,0 +1,106 @@
+<!doctype html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, user-scalable=no, initial-scale=1.0, maximum-scale=1.0, minimum-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>Radio Beautifier</title>
+    <style>
+        .grid { display: flex; }
+        .column { width: 30%; }
+        .field { margin-bottom: 0.6rem; }
+    </style>
+</head>
+
+<body>
+
+    <form name="test" accept-charset="UTF-8">
+        <div class="grid">
+
+            <!--  Initialization with default options -->
+            <div class="column">
+                <h4>Fruits:</h4>
+
+                <div class="field">
+                    <label>
+                        Mango
+                        <input type="radio" id="mango" name="fruits" value="mango" class="radio-beautify" checked>
+                    </label>
+                </div>
+
+                <div class="field">
+                    <label>
+                        Apple
+                        <input type="radio" name="fruits" value="apple" class="radio-beautify">
+                    </label>
+                </div>
+
+                <div class="field">
+                    <!-- If you want to use label apart -->
+                    <input id="banana" type="radio" name="fruits" value="banana" class="radio-beautify">
+                    <label for="banana">Banana</label>
+                </div>
+            </div>
+
+            <!--  Initialization with a custom selector -->
+            <div class="column">
+                <h4>Animals:</h4>
+
+                <div class="field">
+                    <label>
+                        Elephant
+                        <input type="radio" name="animals" value="elephant" class="my-selector">
+                    </label>
+                </div>
+
+                <div class="field">
+                    <label>
+                        Tiger
+                        <input type="radio" name="animals" value="tiger" class="my-selector" checked>
+                    </label>
+                </div>
+
+                <div class="field">
+                    <!-- If you want to use label apart -->
+                    <input id="foo" type="radio" name="animals" value="lion" class="my-selector">
+                    <label for="foo">Lion</label>
+                </div>
+            </div>
+        </div>
+
+        <button type="submit">Submit</button>
+
+    </form>
+
+
+    <script type="module">
+        // Webpack loader.
+        // import RadioBeautifier from "./src"
+
+        // If you do not want to use Js bundler.
+        import RadioBeautifier from "./src/index.js"
+
+        // Initialization with default options.
+        RadioBeautifier.create();
+
+        // Initialization with a custom selector and some options.
+        RadioBeautifier.create({
+          size: '30px',
+          border: '1px solid #EA8100',
+          borderChecked: '1px solid black',
+          color: 'rgba(234,223,210, 0.5)',
+          colorChecked: '#EA8100',
+          selector: '.my-selector',
+          labelSpace: '0.4rem'
+        });
+
+    </script>
+
+</body>
+
+</html>
+
+
+
+
+
