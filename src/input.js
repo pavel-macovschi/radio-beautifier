@@ -37,11 +37,11 @@ export default class Radio {
 
       // Append a child placeholder element.
       outerPlaceholder.appendChild(innerPlaceholder);
-      // Append a parent placeholder element.
+      // Get a parent element.
       const parent = input.parentElement;
+      // Append a parent placeholder element.
       parent.appendChild(outerPlaceholder);
 
-      // Normalize line-height for label's children.
       const
           paddedSpace = parseInt(this.getOption('paddedSpace')),
           size = parseInt(this.getOption('size')),
@@ -96,7 +96,7 @@ export default class Radio {
       borderChecked: '1px solid black',
       color: 'white',
       colorChecked: 'black',
-      shadow: '0 0 4px rgba(0, 0, 0, 0.5)',
+      shadow: '0 0 6px rgba(0, 0, 0, 0.6)',
       size: '20px',
       paddedSpace: '4px',
       transition: 'all 0.4s',
@@ -153,7 +153,7 @@ export default class Radio {
 
     if (0 === nodes.length) {
       throw new Error(
-          `Cannot find checkboxes by provided selector: ${selector}`);
+          `Cannot find radio inputs by provided selector: ${selector}`);
     }
 
     return nodes;

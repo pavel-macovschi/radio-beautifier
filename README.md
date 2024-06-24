@@ -33,7 +33,7 @@
 ```html
 
 <script type="module">
-
+    // Standard browse' module loader.
     import RadioBeautifier from './src/index.js';
 
     // Initialization with default options.
@@ -90,7 +90,7 @@ RadioBeautifier.create();
 
 - `colorChecked` — Matches checked state of input checkbox, you can apply naming colors. Default value is set to `white` color
 
-- `border` — Checkbox border. Default value is set to `1px solid black`
+- `border` — Checkbox outer border. Default value is set to `1px solid black`
 
 - `borderChecked` — Checkbox css border style when input is checked. Default value is set to `1px solid black`
 
@@ -100,10 +100,10 @@ RadioBeautifier.create();
 
 - `labelSpace` — This property adds a space between outer border and a label text. Default value is set to `0.6rem`
 
-- `shadow` — Add a shadow from the outer box, To disable shadow just to set a value to `none`. Default value
-  is set to `0 0 4px rgba(0, 0, 0, 0.5)`
+- `shadow` — Add a shadow from the outer box, To disable shadow just set a value to `none`. Default value
+  is set to `0 0 4px rgba(0, 200, 0, 0.4)`
 
-- `transition` — Add css transition property between checked/unchecked states. Default value is set to `all 0.4s`
+- `transition` — Add css transition between checked/unchecked states. Default value is set to `all 0.4s`
 
 - `selector` — If you want to use custom selector, set value to `.your-custom-selector`. Default value is set
   to `.radio-beautify`
@@ -118,7 +118,7 @@ RadioBeautifier.create();
 
     const radioBeautifier = CheckboxBeautifier.create();
 
-    // Returns all possible radio options.
+    // Returns all possible options that can be modified.
     radioBeautifier.getOptions();
 
 </script>

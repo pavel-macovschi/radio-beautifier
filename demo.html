@@ -14,7 +14,7 @@
 
 <body>
 
-    <form name="test" accept-charset="UTF-8">
+    <form accept-charset="UTF-8">
         <div class="grid">
 
             <!--  Initialization with default options -->
@@ -56,7 +56,7 @@
                 <div class="field">
                     <label>
                         Tiger
-                        <input type="radio" name="animals" value="tiger" class="my-selector" checked>
+                        <input type="radio" name="animals" value="tiger" class="my-selector">
                     </label>
                 </div>
 
@@ -67,7 +67,6 @@
                 </div>
             </div>
         </div>
-
         <button type="submit">Submit</button>
 
     </form>
@@ -77,21 +76,23 @@
         // Webpack loader.
         // import RadioBeautifier from "./src"
 
-        // If you do not want to use Js bundler.
+        // Standard browser loader.
         import RadioBeautifier from "./src/index.js"
 
-        // Initialization with default options.
+        // Init with default options.
         RadioBeautifier.create();
 
-        // Initialization with a custom selector and some options.
+        // Init with custom options and a preferable selector.
         RadioBeautifier.create({
+          selector: '.my-selector',
           size: '30px',
           border: '1px solid #EA8100',
-          borderChecked: '1px solid black',
+          borderChecked: '1px solid #EA8100',
+          paddedSpace: '6px',
           color: 'rgba(234,223,210, 0.5)',
           colorChecked: '#EA8100',
-          selector: '.my-selector',
-          labelSpace: '0.4rem'
+          labelSpace: '0.4rem',
+          shadow: 'none'
         });
 
     </script>
