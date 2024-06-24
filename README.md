@@ -33,7 +33,7 @@
 ```html
 
 <script type="module">
-    // Standard browse' module loader.
+    // Standard browser' module loader.
     import RadioBeautifier from './src/index.js';
 
     // Initialization with default options.
@@ -68,15 +68,15 @@ RadioBeautifier.create();
 
     // Initialization with custom options.
     RadioBeautifier.create({
-        size: '26px',
-        color: 'brown',
-        colorUnchecked: 'lightgrey',
-        border: '1px solid brown',
-        paddedSpace: '4px',
-        // If you use custom selector, it should be included in every input instead of default one.
         selector: '.my-selector',
-        shadow: '0 0 4px rgba(0, 200, 0, 0.4)',
-        transition: 'all 0.6s ease'
+        size: '30px',
+        border: '1px solid #EA8100',
+        borderChecked: '1px solid #EA8100',
+        paddedSpace: '6px',
+        color: 'rgba(234,223,210, 0.5)',
+        colorChecked: '#EA8100',
+        labelSpace: '0.4rem',
+        shadow: 'none'
     });
 </script>
 ```
