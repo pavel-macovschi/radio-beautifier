@@ -1,6 +1,6 @@
 # Radio Beautifier
 
-## Beautify radio inputs of your form using compatible and modern css3 style that will be matched your custom web design.
+## Beautify radio inputs of your form using browser's compatible and modern css3 styles that will be matched your custom web design.
 
 ## It is written in vanilla javascript and completely CSS free without extra dependencies.
 
