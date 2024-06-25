@@ -53,32 +53,24 @@ $ yarn add radio-beautifier
 ```js
 import RadioBeautifier from 'radio-beautifier';
 
-// Initialization with default options.
+// Init with default options.
 RadioBeautifier.create();
 
-```
+// Init with custom options and a preferable input selector.
+const radioBeautifier = RadioBeautifier.create({
+  selector: '.my-selector',
+  size: '30px',
+  border: '1px solid #EA8100',
+  borderChecked: '1px solid #EA8100',
+  paddedSpace: '6px',
+  color: 'rgba(234,223,210, 0.5)',
+  colorChecked: '#EA8100',
+  labelSpace: '0.4rem',
+  shadow: 'none'
+});
 
-### Initialization with custom options.
-
-```html
-
-<script type="module">
-
-  import RadioBeautifier from './src/index.js';
-
-  // Initialization with custom options.
-  RadioBeautifier.create({
-    selector: '.my-selector',
-    size: '30px',
-    border: '1px solid #EA8100',
-    borderChecked: '1px solid #EA8100',
-    paddedSpace: '6px',
-    color: 'rgba(234,223,210, 0.5)',
-    colorChecked: '#EA8100',
-    labelSpace: '0.4rem',
-    shadow: 'none'
-  });
-</script>
+// Helper method getOptions(), returns all possible options that can be modified.
+radioBeautifier.getOptions();
 ```
 
 ### Radio `options` is an object literal with the following options:
@@ -108,19 +100,3 @@ RadioBeautifier.create();
 
 - `selector` — If you want to use custom selector, set value to `.your-custom-selector`. Default value is set
   to `.radio-beautify`
-
-### Helper method `getOptions()`
-
-```html
-
-<script type="module">
-
-  import CheckboxBeautifier from './src/index.js';
-
-  const radioBeautifier = CheckboxBeautifier.create();
-
-  // Returns all possible options that can be modified.
-  radioBeautifier.getOptions();
-
-</script>
-```
