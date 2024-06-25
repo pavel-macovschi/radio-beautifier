@@ -1,8 +1,15 @@
 {
   "name": "radio-beautifier",
-  "version": "1.0.0",
-  "description": "Beautify radio inputs of your form using browser's compatible and modern css3 styles that will be matched your custom web design.",
-  "keywords": ["form", "input", "radio", "style", "css", "css3"],
+  "version": "1.0.1",
+  "description": "Beautify radio inputs of your form using browser's compatible and modern css3 styles.",
+  "keywords": [
+    "form",
+    "input",
+    "radio",
+    "style",
+    "css",
+    "css3"
+  ],
   "main": "src/index.js",
   "repository": "https://github.com/pavel-macovschi/radio-beautifier",
   "author": "Pavel Macovschi <macovschi.pavel@gmail.com>",

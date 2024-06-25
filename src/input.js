@@ -13,8 +13,7 @@ export default class Radio {
 
       const
           outerPlaceholder = document.createElement('span'),
-          innerPlaceholder = document.createElement('span')
-      ;
+          innerPlaceholder = document.createElement('span');
 
       // Apply styles for outer placeholder element.
       outerPlaceholder.style.display = 'flex';
@@ -45,8 +44,7 @@ export default class Radio {
       const
           paddedSpace = parseInt(this.getOption('paddedSpace')),
           size = parseInt(this.getOption('size')),
-          lineHeight = paddedSpace > 0 ? size + (paddedSpace * 2) : size
-      ;
+          lineHeight = paddedSpace > 0 ? size + (paddedSpace * 2) : size;
 
       if ('LABEL' === parent.nodeName) {
         parent.style.lineHeight = `${lineHeight}px`;
@@ -65,11 +63,12 @@ export default class Radio {
 
       if (input.checked) {
         innerPlaceholder.style.backgroundColor = this.getOption('colorChecked');
-        outerPlaceholder.style.border = this.getOption('borderChecked')
+        outerPlaceholder.style.border = this.getOption('borderChecked');
       }
 
       // Add an event listener on a target input element.
-      input.addEventListener('click', () => this.statePropertiesHandler(input, innerPlaceholder));
+      input.addEventListener('click',
+          () => this.statePropertiesHandler(input, innerPlaceholder));
     }
   }
 
@@ -83,7 +82,8 @@ export default class Radio {
     // Set all other inputs as unchecked and remove active color.
     for (const inactiveInput of inactiveInputs) {
       inactiveInput.checked = false;
-      const innerPlaceholder = inactiveInput.parentElement.querySelector('.placeholder-inner');
+      const innerPlaceholder = inactiveInput.parentElement.querySelector(
+          '.placeholder-inner');
       innerPlaceholder.style.backgroundColor = this.getOption('color');
       innerPlaceholder.parentElement.style.border = this.getOption('border');
     }
@@ -101,7 +101,7 @@ export default class Radio {
       paddedSpace: '4px',
       transition: 'all 0.4s',
       selector: '.radio-beautify',
-      labelSpace: '0.6rem'
+      labelSpace: '0.6rem',
     };
 
     return {
@@ -123,9 +123,9 @@ export default class Radio {
       },
       getOptions() {
         return Object.keys(defaultOptions).toString().split(',').join(' | ');
-      }
+      },
     };
-  })()
+  })();
 
   setCustomOptions(options) {
     this._options.setOptions(options);
@@ -148,8 +148,7 @@ export default class Radio {
   getInputs() {
     const
         selector = this.getOption('selector'),
-        nodes = document.querySelectorAll(`${selector}`)
-    ;
+        nodes = document.querySelectorAll(`${selector}`);
 
     if (0 === nodes.length) {
       throw new Error(

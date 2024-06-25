@@ -16,15 +16,15 @@
 ```html
 
 <form>
-    <!-- Input is placed inside label -->
-    <label>
-        Banana
-        <input type="radio" name="fruits" value="banana" class="radio-beautify">
-    </label>
+  <!-- Input is placed inside label -->
+  <label>
+    Banana
+    <input type="radio" name="fruits" value="banana" class="radio-beautify">
+  </label>
 
-    <!-- If you want to use label apart -->
-    <label for="mango">Mango</label>
-    <input id="mango" type="radio" name="fruits" value="mango" class="radio-beautify">
+  <!-- If you want to use label apart -->
+  <label for="mango">Mango</label>
+  <input id="mango" type="radio" name="fruits" value="mango" class="radio-beautify">
 </form>
 ```
 
@@ -33,11 +33,11 @@
 ```html
 
 <script type="module">
-    // Standard browser' module loader.
-    import RadioBeautifier from './src/index.js';
+  // Standard browser' module loader.
+  import RadioBeautifier from './src/index.js';
 
-    // Initialization with default options.
-    RadioBeautifier.create();
+  // Initialization with default options.
+  RadioBeautifier.create();
 
 </script>
 ```
@@ -64,20 +64,20 @@ RadioBeautifier.create();
 
 <script type="module">
 
-    import RadioBeautifier from './src/index.js';
+  import RadioBeautifier from './src/index.js';
 
-    // Initialization with custom options.
-    RadioBeautifier.create({
-        selector: '.my-selector',
-        size: '30px',
-        border: '1px solid #EA8100',
-        borderChecked: '1px solid #EA8100',
-        paddedSpace: '6px',
-        color: 'rgba(234,223,210, 0.5)',
-        colorChecked: '#EA8100',
-        labelSpace: '0.4rem',
-        shadow: 'none'
-    });
+  // Initialization with custom options.
+  RadioBeautifier.create({
+    selector: '.my-selector',
+    size: '30px',
+    border: '1px solid #EA8100',
+    borderChecked: '1px solid #EA8100',
+    paddedSpace: '6px',
+    color: 'rgba(234,223,210, 0.5)',
+    colorChecked: '#EA8100',
+    labelSpace: '0.4rem',
+    shadow: 'none'
+  });
 </script>
 ```
 
@@ -88,7 +88,8 @@ RadioBeautifier.create();
 - `color` — Matches checked state of input checkbox, you can apply naming colors like green, red, etc. or hex,
   hsla, rgba `black` or `rgba(0,0,0,1)`. Default value is set to `black` color
 
-- `colorChecked` — Matches checked state of input checkbox, you can apply naming colors. Default value is set to `white` color
+- `colorChecked` — Matches checked state of input checkbox, you can apply naming colors. Default value is set to `white`
+  color
 
 - `border` — Checkbox outer border. Default value is set to `1px solid black`
 
@@ -114,12 +115,12 @@ RadioBeautifier.create();
 
 <script type="module">
 
-    import CheckboxBeautifier from './src/index.js';
+  import CheckboxBeautifier from './src/index.js';
 
-    const radioBeautifier = CheckboxBeautifier.create();
+  const radioBeautifier = CheckboxBeautifier.create();
 
-    // Returns all possible options that can be modified.
-    radioBeautifier.getOptions();
+  // Returns all possible options that can be modified.
+  radioBeautifier.getOptions();
 
 </script>
 ```
