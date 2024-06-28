@@ -1,8 +1,7 @@
 export default class Radio {
 
   constructor(options) {
-    this.setCustomOptions(options);
-    // this._options.setOptions(options);
+    this.setOptions(options);
     this.inputs = this.getInputs();
     this.init();
   }
@@ -12,34 +11,40 @@ export default class Radio {
       this.hideVendorStyle(input);
 
       const
-          outerPlaceholder = document.createElement('span'),
-          innerPlaceholder = document.createElement('span');
+          placeholderOuter = document.createElement('span'),
+          placeholderInner = document.createElement('span')
+      ;
 
       // Apply styles for outer placeholder element.
-      outerPlaceholder.style.display = 'flex';
-      outerPlaceholder.style.padding = this.getOption('paddedSpace');
-      outerPlaceholder.style.textAlign = 'center';
-      outerPlaceholder.style.border = this.getOption('border');
-      outerPlaceholder.style.transition = this.getOption('transition');
-      outerPlaceholder.style.borderRadius = '100%';
-      outerPlaceholder.style.boxShadow = this.getOption('shadow');
-      outerPlaceholder.style.marginRight = this.getOption('labelSpace');
-      outerPlaceholder.style.order = -1;
+      this.setStyles(placeholderOuter, {
+        display: 'flex',
+        padding: this.getOption('paddedSpace'),
+        textAlign: 'center',
+        border: this.getOption('border'),
+        transition: this.getOption('transition'),
+        borderRadius: '100%',
+        boxShadow: this.getOption('shadow'),
+        marginRight: this.getOption('labelSpace'),
+        order: -1,
+      });
 
       // Apply styles for inner placeholder element.
-      innerPlaceholder.style.transition = this.getOption('transition');
-      innerPlaceholder.style.borderRadius = '100%';
-      innerPlaceholder.style.width = this.getOption('size');
-      innerPlaceholder.style.height = this.getOption('size');
-      innerPlaceholder.style.backgroundColor = this.getOption('color');
-      innerPlaceholder.classList.add('placeholder-inner');
+      this.setStyles(placeholderInner, {
+        transition: this.getOption('transition'),
+        borderRadius: '100%',
+        width: this.getOption('size'),
+        height: this.getOption('size'),
+        backgroundColor: this.getOption('color'),
+      });
+
+      placeholderInner.classList.add('placeholder-inner');
 
       // Append a child placeholder element.
-      outerPlaceholder.appendChild(innerPlaceholder);
+      placeholderOuter.appendChild(placeholderInner);
       // Get a parent element.
       const parent = input.parentElement;
       // Append a parent placeholder element.
-      parent.appendChild(outerPlaceholder);
+      parent.appendChild(placeholderOuter);
 
       const
           paddedSpace = parseInt(this.getOption('paddedSpace')),
@@ -53,22 +58,21 @@ export default class Radio {
       // Assuming that a target input element isn't placed inside label.
       if ('LABEL' !== parent.nodeName) {
         const labelElement = document.querySelector(`[for="${input.id}"]`);
-        labelElement.appendChild(outerPlaceholder);
+        labelElement.appendChild(placeholderOuter);
         labelElement.prepend(input);
         // Normalize line height for labels to be used apart.
         labelElement.style.lineHeight = `${lineHeight}px`;
-
         this.addLabelStyle(labelElement);
       }
 
       if (input.checked) {
-        innerPlaceholder.style.backgroundColor = this.getOption('colorChecked');
-        outerPlaceholder.style.border = this.getOption('borderChecked');
+        placeholderInner.style.backgroundColor = this.getOption('colorChecked');
+        placeholderOuter.style.border = this.getOption('borderChecked');
       }
 
       // Add an event listener on a target input element.
       input.addEventListener('click',
-          () => this.statePropertiesHandler(input, innerPlaceholder));
+          () => this.statePropertiesHandler(input, placeholderInner));
     }
   }
 
@@ -115,8 +119,10 @@ export default class Radio {
       },
       getOptionValue(key) {
         if (typeof defaultOptions[key] === 'undefined') {
-          throw new Error(
-              `Cannot find an option [${key}], use one of these: ${this.getOptions()}`);
+          throw new Error(`
+            Cannot find an option [${key}],
+             use one of options: ${this.getOptions()}
+          `);
         }
 
         return defaultOptions[key];
@@ -127,7 +133,7 @@ export default class Radio {
     };
   })();
 
-  setCustomOptions(options) {
+  setOptions(options) {
     this._options.setOptions(options);
   }
 
@@ -165,17 +171,25 @@ export default class Radio {
       this.addLabelStyle(parent);
     }
 
-    input.style.appearance = 'none';
-    input.style.display = 'none';
-    input.style.opacity = 0;
-    input.style.margin = 0;
-    input.style.padding = 0;
+    this.setStyles(input, {
+      appearance: 'none',
+      display: 'none',
+      opacity: 0,
+      margin: 0,
+      padding: 0,
+    });
   }
 
   addLabelStyle(element) {
-    element.style.display = 'inline-flex';
-    element.style.cursor = 'pointer';
-    element.style.userSelect = 'none';
+    this.setStyles(element, {
+      display: 'inline-flex',
+      cursor: 'pointer',
+      userSelect: 'none',
+    });
+  }
+
+  setStyles(element, styles = {}) {
+    Object.assign(element.style, styles);
   }
 
 }
