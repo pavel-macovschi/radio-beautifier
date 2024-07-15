@@ -78,7 +78,7 @@
     // import RadioBeautifier from "./src"
 
     // Standard browser loader.
-    import RadioBeautifier from './src/index.js';
+    import RadioBeautifier from './src';
 
     // Init with default options.
     RadioBeautifier.create();
@@ -89,11 +89,25 @@
       size: '30px',
       border: '1px solid #EA8100',
       borderChecked: '1px solid #EA8100',
-      paddedSpace: '2px',
+      paddedSpace: '4px',
       color: 'rgba(234, 223, 210, 0.5)',
       colorChecked: '#ea8100',
       labelSpace: '0.4rem',
       shadow: '0 0 2px rgba(0, 0, 0, 0.6)',
+      animation: {
+        'keyframes': [
+          { transform: "skewY(0)" },
+          { transform: "skewY(10deg)" },
+          { transform: "skewY(20deg)" },
+          { transform: "skewY(-5deg)" },
+          { transform: "skewY(-10deg)" },
+          { transform: "skewY(0)" },
+        ],
+        'options': {
+          duration: 300,
+          iterations: 1,
+        },
+      },
     });
 
   </script>

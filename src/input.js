@@ -14,23 +14,25 @@ export default class Radio {
           placeholderOuter = document.createElement('span'),
           placeholderInner = document.createElement('span')
       ;
-
       // Apply styles for outer placeholder element.
       this.setStyles(placeholderOuter, {
         display: 'flex',
         padding: this.getOption('paddedSpace'),
         textAlign: 'center',
         border: this.getOption('border'),
-        transition: this.getOption('transition'),
+        transition: this.isAnimationKeysSet() ?
+            'none' :
+            this.getOption('transition'),
         borderRadius: '100%',
         boxShadow: this.getOption('shadow'),
         marginRight: this.getOption('labelSpace'),
         order: -1,
       });
-
       // Apply styles for inner placeholder element.
       this.setStyles(placeholderInner, {
-        transition: this.getOption('transition'),
+        transition: this.isAnimationKeysSet() ?
+            'none' :
+            this.getOption('transition'),
         borderRadius: '100%',
         width: this.getOption('size'),
         height: this.getOption('size'),
@@ -54,7 +56,6 @@ export default class Radio {
       if ('LABEL' === parent.nodeName) {
         parent.style.lineHeight = `${lineHeight}px`;
       }
-
       // Assuming that a target input element isn't placed inside label.
       if ('LABEL' !== parent.nodeName) {
         const labelElement = document.querySelector(`[for="${input.id}"]`);
@@ -69,7 +70,25 @@ export default class Radio {
         placeholderInner.style.backgroundColor = this.getOption('colorChecked');
         placeholderOuter.style.border = this.getOption('borderChecked');
       }
-
+      // Check if animation is enabled.
+      if (this.isAnimationKeysSet()) {
+        // Check if keyframes or options are set.
+        if (!this.getOption('animation')['keyframes'] ||
+            !this.getOption('animation')['options']) {
+          throw new Error(`keyframes and options should be set as in an example below:
+          animation: {
+            'keyframes: [
+              { transform: "skewY(0)" },
+              { transform: "skewY(10deg)" },
+              { transform: "skewY(0)" },
+            ],
+            'options': {
+              duration: 300,
+            },  
+          },
+        `);
+        }
+      }
       // Add an event listener on a target input element.
       input.addEventListener('click',
           () => this.statePropertiesHandler(input, placeholderInner));
@@ -79,9 +98,17 @@ export default class Radio {
   statePropertiesHandler(input, placeholder) {
     const inactiveInputs = Array.from(this.inputs).
         filter(elem => (elem.value !== input.value));
+    const outerPlaceholder = placeholder.parentElement;
+    const keyframes = this.getOption('animation')['keyframes'];
+    const options = this.getOption('animation')['options'];
 
+    // Add animation effects for both elements.
+    placeholder.animate(keyframes, options);
+    outerPlaceholder.animate(keyframes, options);
+
+    // Set options on active placeholder.
     placeholder.style.backgroundColor = this.getOption('colorChecked');
-    placeholder.parentElement.style.border = this.getOption('borderChecked');
+    outerPlaceholder.style.border = this.getOption('borderChecked');
 
     // Set all other inputs as unchecked and remove active color.
     for (const inactiveInput of inactiveInputs) {
@@ -91,6 +118,10 @@ export default class Radio {
       innerPlaceholder.style.backgroundColor = this.getOption('color');
       innerPlaceholder.parentElement.style.border = this.getOption('border');
     }
+  }
+
+  isAnimationKeysSet() {
+    return Object.keys(this.getOption('animation')).length;
   }
 
   _options = (function() {
@@ -106,6 +137,7 @@ export default class Radio {
       transition: 'all 0.4s',
       selector: '.radio-beautify',
       labelSpace: '0.6rem',
+      animation: {},
     };
 
     return {
