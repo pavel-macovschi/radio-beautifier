@@ -74,6 +74,20 @@ const radioBeautifier = RadioBeautifier.create({
   color: 'rgba(234,223,210, 0.5)',
   colorChecked: '#EA8100',
   labelSpace: '0.4rem',
+  animation: {
+    'keyframes': [
+      {transform: "skewY(0)"},
+      {transform: "skewY(10deg)"},
+      {transform: "skewY(20deg)"},
+      {transform: "skewY(-5deg)"},
+      {transform: "skewY(-10deg)"},
+      {transform: "skewY(0)"},
+    ],
+    'options': {
+      duration: 300,
+      iterations: 1,
+    },
+  }
 });
 
 // Helper method getOptions(), returns all possible options that can be modified.
@@ -103,6 +117,10 @@ radioBeautifier.getOptions();
   is set to `0 0 4px rgba(0, 200, 0, 0.4)`
 
 - `transition` — Add css transition between checked/unchecked states. Default value is set to `all 0.4s`
+
+- `animation` — Add an animation that should contains `keyframes` and `options`. There is no default value for animation. If it's set transition effect will be disabled.
+  - 'keyframes' - An array of hash objects with different css properties for creating the whole animation.
+  - 'options' - Animation options hash `delay`, `duration`, `iterations`, `easing`, `direction`, 
 
 - `selector` — If you want to use custom selector, set value to `.my-selector`. Default value is set
   to `.radio-beautify`

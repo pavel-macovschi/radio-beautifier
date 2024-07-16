@@ -18,7 +18,7 @@
   <form accept-charset="UTF-8">
     <div class="grid">
 
-      <!--  Init with default options -->
+      <!-- 1. Init with default options -->
       <div class="column">
         <h4>Fruits:</h4>
 
@@ -43,7 +43,7 @@
         </div>
       </div>
 
-      <!--  Init with a custom selector -->
+      <!--  2. Init with custom options and a preferable selector. -->
       <div class="column">
         <h4>Animals:</h4>
 
@@ -67,9 +67,41 @@
           <label for="foo">Lion</label>
         </div>
       </div>
-    </div>
-    <button type="submit">Submit</button>
 
+      <!-- 3.Init with a custom selector and bubble animation effect -->
+      <div class="column">
+        <h4>Colors:</h4>
+
+        <div class="field">
+          <label>
+            Brown
+            <input type="radio" name="colors" value="brown" class="another-selector">
+          </label>
+        </div>
+
+        <div class="field">
+          <label>
+            Orange
+            <input type="radio" name="colors" value="orange" class="another-selector">
+          </label>
+        </div>
+
+        <div class="field">
+          <!-- If you want to use label apart -->
+          <input id="white" type="radio" name="colors" value="white" class="another-selector">
+          <label for="white">White</label>
+        </div>
+
+        <div class="field">
+          <label for="green">
+            Green
+            <input id="green" type="radio" name="colors" value="green" class="another-selector">
+          </label>
+        </div>
+      </div>
+    </div>
+
+    <button type="submit">Submit</button>
   </form>
 
 
@@ -78,12 +110,12 @@
     // import RadioBeautifier from "./src"
 
     // Standard browser loader.
-    import RadioBeautifier from './src';
+    import RadioBeautifier from './src/index.js';
 
-    // Init with default options.
+    // 1. Init with default options.
     RadioBeautifier.create();
 
-    // Init with custom options and a preferable selector.
+    // 2. Init with custom options and a preferable selector.
     RadioBeautifier.create({
       selector: '.my-selector',
       size: '30px',
@@ -96,15 +128,39 @@
       shadow: '0 0 2px rgba(0, 0, 0, 0.6)',
       animation: {
         'keyframes': [
-          { transform: "skewY(0)" },
-          { transform: "skewY(10deg)" },
-          { transform: "skewY(20deg)" },
-          { transform: "skewY(-5deg)" },
-          { transform: "skewY(-10deg)" },
-          { transform: "skewY(0)" },
+          {transform: 'skewY(0)'},
+          {transform: 'skewY(10deg)'},
+          {transform: 'skewY(20deg)'},
+          {transform: 'skewY(-5deg)'},
+          {transform: 'skewY(-10deg)'},
+          {transform: 'skewY(0)'},
         ],
         'options': {
           duration: 300,
+          iterations: 1,
+        },
+      },
+    });
+
+    // 3.Init with a custom selector and bubble animation effect.
+    RadioBeautifier.create({
+      selector: '.another-selector',
+      size: '30px',
+      border: '1px solid brown',
+      borderChecked: '1px solid brown',
+      paddedSpace: '4px',
+      color: 'rgba(234, 223, 210, 0.5)',
+      colorChecked: 'brown',
+      labelSpace: '0.4rem',
+      shadow: '0 0 4px rgba(0, 0, 0, 0.6)',
+      animation: {
+        'keyframes': [
+          {transform: 'scale(1)'},
+          {transform: 'scale(1.1)'},
+          {transform: 'scale(1)'},
+        ],
+        'options': {
+          duration: 250,
           iterations: 1,
         },
       },
