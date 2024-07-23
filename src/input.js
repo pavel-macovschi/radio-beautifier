@@ -7,11 +7,6 @@ export default class Radio {
   }
 
   init() {
-    let callback;
-    if (typeof this.getOption('animation')['onFinished'] === 'function') {
-      callback = this.getOption('animation')['onFinished'];
-    }
-
     for (const input of this.inputs) {
       this.hideVendorStyle(input);
 
@@ -102,9 +97,11 @@ export default class Radio {
 
       // Add another click listener for execution callback when animation will be finished.
       if (typeof this.getOption('animation')['onFinished'] === 'function') {
-        input.addEventListener('click',
-            () => this.onAnimationComplete(placeholderInner).
-                then(() => callback()));
+        input.addEventListener('click', () => {
+          // Get callback function.
+          const callback = this.getOption('animation')['onFinished'];
+          this.onAnimationComplete(placeholderInner).then(() => callback());
+        });
       }
     }
   }
