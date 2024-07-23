@@ -87,6 +87,9 @@ const radioBeautifier = RadioBeautifier.create({
       duration: 300,
       iterations: 1,
     },
+    'onFinished': function() {
+      console.log('Callback function has been executed');
+    }
   }
 });
 
@@ -120,7 +123,7 @@ radioBeautifier.getOptions();
 
 - `animation` — Add an animation that should contains `keyframes` and `options`. There is no default value for animation. If it's set transition effect will be disabled.
   - 'keyframes' - An array of hash objects with different css properties for creating the whole animation.
-  - 'options' - Animation options hash `delay`, `duration`, `iterations`, `easing`, `direction`, 
-
+  - 'options' - Animation options hash `delay`, `duration`, `iterations`, `easing`, `direction`,
+  - 'onFinished' - Callback function that can be executed when animation is finished.
 - `selector` — If you want to use custom selector, set value to `.my-selector`. Default value is set
   to `.radio-beautify`

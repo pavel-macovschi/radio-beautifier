@@ -142,7 +142,7 @@
       },
     });
 
-    // 3.Init with a custom selector and bubble animation effect.
+    // 3. Init with a custom selector and bubble animation effect.
     RadioBeautifier.create({
       selector: '.another-selector',
       size: '30px',
@@ -160,9 +160,12 @@
           {transform: 'scale(1)'},
         ],
         'options': {
-          duration: 250,
+          duration: 300,
           iterations: 1,
         },
+        'onFinished': function() {
+          console.log('Callback function has been executed');
+        }
       },
     });
 

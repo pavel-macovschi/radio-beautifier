@@ -7,6 +7,11 @@ export default class Radio {
   }
 
   init() {
+    let callback;
+    if (typeof this.getOption('animation')['onFinished'] === 'function') {
+      callback = this.getOption('animation')['onFinished'];
+    }
+
     for (const input of this.inputs) {
       this.hideVendorStyle(input);
 
@@ -70,6 +75,7 @@ export default class Radio {
         placeholderInner.style.backgroundColor = this.getOption('colorChecked');
         placeholderOuter.style.border = this.getOption('borderChecked');
       }
+
       // Check if animation is enabled.
       if (this.isAnimationKeysSet()) {
         // Check if keyframes or options are set.
@@ -89,18 +95,29 @@ export default class Radio {
         `);
         }
       }
+
       // Add an event listener on a target input element.
       input.addEventListener('click',
           () => this.statePropertiesHandler(input, placeholderInner));
+
+      // Add another click listener for execution callback when animation will be finished.
+      if (typeof this.getOption('animation')['onFinished'] === 'function') {
+        input.addEventListener('click',
+            () => this.onAnimationComplete(placeholderInner).
+                then(() => callback()));
+      }
     }
   }
 
   statePropertiesHandler(input, placeholder) {
-    const inactiveInputs = Array.from(this.inputs).
-        filter(elem => (elem.value !== input.value));
-    const outerPlaceholder = placeholder.parentElement;
-    const keyframes = this.getOption('animation')['keyframes'];
-    const options = this.getOption('animation')['options'];
+    const
+        inactiveInputs = Array.from(this.inputs).
+            filter(elem => (elem.value !== input.value)),
+        outerPlaceholder = placeholder.parentElement,
+        animation = this.getOption('animation'),
+        keyframes = animation['keyframes'],
+        options = animation['options']
+    ;
 
     // Add animation effects for both elements.
     placeholder.animate(keyframes, options);
@@ -139,7 +156,6 @@ export default class Radio {
       labelSpace: '0.6rem',
       animation: {},
     };
-
     return {
       setOptions(options) {
         // Overwrite default options.
@@ -222,6 +238,12 @@ export default class Radio {
 
   setStyles(element, styles = {}) {
     Object.assign(element.style, styles);
+  }
+
+  onAnimationComplete(element) {
+    return Promise.allSettled(
+        element.getAnimations().map(animation => animation.finished),
+    );
   }
 
 }
